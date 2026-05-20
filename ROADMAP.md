@@ -13,7 +13,7 @@ MoiraWeave is an open-source, self-hosted MLOps platform for composing and opera
 - API gateway with JWT auth, rate limiting, and OpenTelemetry tracing
 - Helm chart with NetworkPolicies, RBAC, and KEDA autoscaling
 - ExternalSecrets support (AWS + GCP)
-- CLI: `moira init`, `step new`, `pipeline new/validate`, `flow flow-command`
+- CLI: `moira init`, `step new`, `step add --from-catalog`, `pipeline new/validate`, `flow flow-command`
 - Steps catalog: text-embed-fastembed, vector-index-qdrant, vector-search-qdrant, audio-transcribe-whisper, vision-clip
 
 ---
@@ -21,7 +21,6 @@ MoiraWeave is an open-source, self-hosted MLOps platform for composing and opera
 ## In progress — v0.4
 
 ### DX hardening
-- [ ] `moira step add --from-catalog` — materialize a catalog step into the workspace
 - [ ] `moira job submit --watch` — submit a job and poll until completion
 - [ ] Workspace-aware `flow` (reads step URLs from pipeline.yaml correctly)
 
