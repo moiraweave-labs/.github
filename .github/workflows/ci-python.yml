@@ -1,0 +1,73 @@
+# Reusable workflow: Python lint + typecheck + test
+# Usage in caller workflows:
+#   jobs:
+#     ci:
+#       uses: moiraweave-labs/.github/.github/workflows/ci-python.yml@main
+#       with:
+#         python-version: "3.13"
+
+name: CI Python (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        description: Python version to use
+        type: string
+        default: "3.13"
+      working-directory:
+        description: Directory to run commands in
+        type: string
+        default: "."
+      coverage-threshold:
+        description: Minimum coverage percentage (0 to skip)
+        type: number
+        default: 80
+
+jobs:
+  lint-typecheck-test:
+    name: Lint, typecheck & test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Lint (ruff)
+        run: uv run ruff check .
+
+      - name: Format check (ruff format)
+        run: uv run ruff format --check .
+
+      - name: Typecheck (mypy)
+        run: uv run mypy .
+
+      - name: Test (pytest)
+        run: |
+          uv run pytest \
+            --cov=. \
+            --cov-report=xml \
+            --cov-report=term-missing \
+            --cov-fail-under=${{ inputs.coverage-threshold }}
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-${{ github.run_id }}
+          path: ${{ inputs.working-directory }}/coverage.xml
+          retention-days: 7
