@@ -1,0 +1,54 @@
+name: New workload proposal
+description: Request or propose a model, pipeline, or agent workload template.
+title: "new-workload: "
+labels: [new-workload]
+body:
+  - type: dropdown
+    id: workload_type
+    attributes:
+      label: Workload type
+      options:
+        - agent-service
+        - model-service
+        - pipeline
+    validations:
+      required: true
+
+  - type: input
+    id: workload_name
+    attributes:
+      label: Workload name
+      placeholder: hermes
+    validations:
+      required: true
+
+  - type: input
+    id: image
+    attributes:
+      label: Container image or runtime
+      placeholder: ghcr.io/org/workload:latest
+    validations:
+      required: true
+
+  - type: textarea
+    id: contract
+    attributes:
+      label: Runtime contract
+      description: Include endpoints, ports, adapter, secrets, persistence, and expected input/output.
+      placeholder: |
+        adapter: hermes
+        ports:
+          - name: http
+            port: 8000
+        secrets:
+          - OPENAI_API_KEY
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Primary use case
+      placeholder: Who will deploy this workload and how will they interact with it?
+    validations:
+      required: true

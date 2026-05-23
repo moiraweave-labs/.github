@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a runtime, pipeline, documentation, or infrastructure bug.
+description: Report a workload, agent, runtime, documentation, or infrastructure bug.
 title: "bug: "
 labels: [bug]
 body:
@@ -36,5 +36,5 @@ body:
     id: logs
     attributes:
       label: Logs and traces
-      description: Include stack traces, pod logs, workflow output, or request/response snippets.
+      description: Include stack traces, pod logs, run events, agent messages, or request/response snippets.
       render: shell

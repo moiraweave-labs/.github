@@ -1,43 +1,56 @@
 # MoiraWeave Labs
 
-**Open, modular MLOps platform for orchestrating, monitoring and scaling AI inference pipelines.**
+**Self-hosted AI workload and agent operations platform.**
 
-Define your pipeline in YAML. Deploy with one command. Scale each step independently.
+MoiraWeave deploys and operates model services, pipelines, and long-running
+agent runtimes from one manifest model. It manages the control plane around
+agents: sessions, messages, runs, events, logs, cancellation, health, and
+artifacts. The agent runtime keeps its own reasoning loop, tools, memory, and
+domain behavior.
 
 ```yaml
-# moiraweave.yaml
-steps:
-  - id: transcribe
-    task: audio-transcribe
-    url: http://whisper-stt:8080
-  - id: embed
-    task: text-embed
-    url: http://fastembed:8080
-  - id: index
-    task: vector-index
-    url: http://qdrant:8080
+apiVersion: moiraweave.io/v1alpha1
+kind: Workload
+metadata:
+  name: hermes
+spec:
+  type: agent-service
+  image: ghcr.io/nousresearch/hermes-agent:latest
+  execution:
+    mode: session
+    timeoutSeconds: 172800
+  ports:
+    - name: http
+      port: 8000
+  agent:
+    adapter: hermes
+    workspaceMount: /workspace
+    exposedChannels: [ui, api]
 ```
 
 ```bash
-moira pipeline validate moiraweave.yaml
-moira pipeline run moiraweave.yaml --input audio.mp3
+moira init
+moira workload new hermes --type agent-service --adapter hermes
+moira deploy local --up
+moira agent session create hermes
 ```
 
 ## Repositories
 
 | Repo | Description |
 |------|-------------|
-| [moiraweave-core](https://github.com/moiraweave-labs/moiraweave-core) | Runtime platform: API gateway + Redis Streams worker + Helm charts |
-| [moiraweave-steps](https://github.com/moiraweave-labs/moiraweave-steps) | Community catalog of reusable inference steps |
-| [moiraweave-cli](https://github.com/moiraweave-labs/moiraweave-cli) | Developer CLI — `pip install moiraweave-cli` |
-| [moiraweave-docs](https://github.com/moiraweave-labs/moiraweave-docs) | Documentation — [moiraweave-labs.github.io/moiraweave-docs](https://moiraweave-labs.github.io/moiraweave-docs/) |
+| [moiraweave-core](https://github.com/moiraweave-labs/moiraweave-core) | Runtime, API gateway, workers, Helm, Compose, and control-plane storage |
+| [moiraweave-cli](https://github.com/moiraweave-labs/moiraweave-cli) | User CLI for workspace init, workload manifests, runs, agents, and deploys |
+| [moiraweave-ui](https://github.com/moiraweave-labs/moiraweave-ui) | Optional Ops dashboard for workloads, runs, sessions, artifacts, and health |
+| [moiraweave-docs](https://github.com/moiraweave-labs/moiraweave-docs) | Product and architecture documentation |
 
-## Tech stack
+## Tech Stack
 
-FastAPI · Redis Streams · Qdrant · Kubernetes · Helm · ArgoCD · Prometheus · Grafana · Jaeger · Python 3.13
+FastAPI · Postgres · Redis Streams · Qdrant · React · Kubernetes · Helm ·
+Prometheus · Jaeger · Python 3.13
 
 ## Links
 
-- 📖 [Documentation](https://moiraweave-labs.github.io/moiraweave-docs/)
-- 🐛 [Report an issue](https://github.com/moiraweave-labs/moiraweave-core/issues)
-- 💬 [Discussions](https://github.com/moiraweave-labs/moiraweave-core/discussions)
+- [Documentation](https://moiraweave-labs.github.io/moiraweave-docs/)
+- [Report an issue](https://github.com/moiraweave-labs/moiraweave-core/issues)
+- [Discussions](https://github.com/moiraweave-labs/moiraweave-core/discussions)

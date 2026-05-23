@@ -16,20 +16,20 @@ This repository contains:
 - [Contributing Guidelines](CONTRIBUTING.md) - How to contribute to MoiraWeave projects
 - [Code of Conduct](CODE_OF_CONDUCT.md) - Our community standards
 - [Security Policy](SECURITY.md) - Reporting security vulnerabilities
-- [Documentation](https://docs.moiraweave.dev) - Project documentation
+- [Documentation](https://moiraweave-labs.github.io/moiraweave-docs/) - Project documentation
 
 ## Organization Repositories
 
-- **[moiraweave-core](https://github.com/moiraweave-labs/moiraweave-core)** - Runtime platform and core services
-- **[moiraweave-steps](https://github.com/moiraweave-labs/moiraweave-steps)** - Reusable MLOps steps catalog
+- **[moiraweave-core](https://github.com/moiraweave-labs/moiraweave-core)** - Workload runtime, API gateway, worker, and infrastructure
 - **[moiraweave-cli](https://github.com/moiraweave-labs/moiraweave-cli)** - Developer CLI tool
+- **[moiraweave-ui](https://github.com/moiraweave-labs/moiraweave-ui)** - Optional Ops dashboard
 - **[moiraweave-docs](https://github.com/moiraweave-labs/moiraweave-docs)** - Public documentation
 
 ## Getting Started
 
 1. Read the [Contributing Guidelines](CONTRIBUTING.md)
 2. Review the [Code of Conduct](CODE_OF_CONDUCT.md)
-3. Check out the [Documentation](https://docs.moiraweave.dev)
+3. Check out the [Documentation](https://moiraweave-labs.github.io/moiraweave-docs/)
 4. Start contributing!
 
 ## Need Help?
