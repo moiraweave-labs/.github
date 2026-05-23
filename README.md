@@ -22,7 +22,7 @@ This repository contains:
 
 - **[moiraweave-core](https://github.com/moiraweave-labs/moiraweave-core)** - Workload runtime, API gateway, worker, and infrastructure
 - **[moiraweave-cli](https://github.com/moiraweave-labs/moiraweave-cli)** - Developer CLI tool
-- **[moiraweave-ui](https://github.com/moiraweave-labs/moiraweave-ui)** - Optional Ops dashboard
+- **[moiraweave-ui](https://github.com/moiraweave-labs/moiraweave-ui)** - Integrated Ops dashboard
 - **[moiraweave-docs](https://github.com/moiraweave-labs/moiraweave-docs)** - Public documentation
 
 ## Getting Started

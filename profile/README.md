@@ -41,7 +41,7 @@ moira agent session create hermes
 |------|-------------|
 | [moiraweave-core](https://github.com/moiraweave-labs/moiraweave-core) | Runtime, API gateway, workers, Helm, Compose, and control-plane storage |
 | [moiraweave-cli](https://github.com/moiraweave-labs/moiraweave-cli) | User CLI for workspace init, workload manifests, runs, agents, and deploys |
-| [moiraweave-ui](https://github.com/moiraweave-labs/moiraweave-ui) | Optional Ops dashboard for workloads, runs, sessions, artifacts, and health |
+| [moiraweave-ui](https://github.com/moiraweave-labs/moiraweave-ui) | Integrated Ops dashboard for workloads, runs, sessions, artifacts, and health |
 | [moiraweave-docs](https://github.com/moiraweave-labs/moiraweave-docs) | Product and architecture documentation |
 
 ## Tech Stack
