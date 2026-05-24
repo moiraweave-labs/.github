@@ -29,17 +29,15 @@ spec:
 ```
 
 ```bash
-moira init
-moira workload new hermes --type agent-service --adapter hermes
-moira deploy local --up
-moira agent session create hermes
+uv tool install moiraweave-cli
+moira up
 ```
 
 ## Repositories
 
 | Repo | Description |
 |------|-------------|
-| [moiraweave-core](https://github.com/moiraweave-labs/moiraweave-core) | Runtime, API gateway, workers, Helm, Compose, and control-plane storage |
+| [moiraweave](https://github.com/moiraweave-labs/moiraweave) | Main product runtime, API gateway, workers, Helm, Compose, and control-plane storage |
 | [moiraweave-cli](https://github.com/moiraweave-labs/moiraweave-cli) | User CLI for workspace init, workload manifests, runs, agents, and deploys |
 | [moiraweave-ui](https://github.com/moiraweave-labs/moiraweave-ui) | Integrated Ops dashboard for workloads, runs, sessions, artifacts, and health |
 | [moiraweave-docs](https://github.com/moiraweave-labs/moiraweave-docs) | Product and architecture documentation |
@@ -52,5 +50,5 @@ Prometheus · Jaeger · Python 3.13
 ## Links
 
 - [Documentation](https://moiraweave-labs.github.io/moiraweave-docs/)
-- [Report an issue](https://github.com/moiraweave-labs/moiraweave-core/issues)
-- [Discussions](https://github.com/moiraweave-labs/moiraweave-core/discussions)
+- [Report an issue](https://github.com/moiraweave-labs/moiraweave/issues)
+- [Discussions](https://github.com/moiraweave-labs/moiraweave/discussions)

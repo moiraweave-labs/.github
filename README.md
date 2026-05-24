@@ -20,8 +20,8 @@ This repository contains:
 
 ## Organization Repositories
 
-- **[moiraweave-core](https://github.com/moiraweave-labs/moiraweave-core)** - Workload runtime, API gateway, worker, and infrastructure
-- **[moiraweave-cli](https://github.com/moiraweave-labs/moiraweave-cli)** - Developer CLI tool
+- **[moiraweave](https://github.com/moiraweave-labs/moiraweave)** - Main product runtime, API gateway, worker, and infrastructure
+- **[moiraweave-cli](https://github.com/moiraweave-labs/moiraweave-cli)** - User CLI for instant local startup and deploy flows
 - **[moiraweave-ui](https://github.com/moiraweave-labs/moiraweave-ui)** - Integrated Ops dashboard
 - **[moiraweave-docs](https://github.com/moiraweave-labs/moiraweave-docs)** - Public documentation
 
@@ -30,7 +30,7 @@ This repository contains:
 1. Read the [Contributing Guidelines](CONTRIBUTING.md)
 2. Review the [Code of Conduct](CODE_OF_CONDUCT.md)
 3. Check out the [Documentation](https://moiraweave-labs.github.io/moiraweave-docs/)
-4. Start contributing!
+4. Try the product locally with `moira up`
 
 ## Need Help?
 
