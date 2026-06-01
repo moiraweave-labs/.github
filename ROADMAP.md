@@ -9,6 +9,12 @@ behavior.
 
 ## Current Direction
 
+### v0.3.x: Instant Local Onboarding
+- `moira up` is the primary first-use path from an empty directory.
+- `moira doctor` diagnoses workspace, Docker, ports, secrets, Compose, API, UI, and demo agent readiness.
+- The no-secret demo agent is the canonical smoke test before Hermes/OpenClaw.
+- Quickstart uses one route: start locally, chat, inspect runs/events/artifacts.
+
 ### v0.4: AI Workload Control Plane
 - Workload manifests replace legacy pipeline/job terminology.
 - Postgres stores workloads, runs, sessions, events, and artifact metadata.
@@ -29,11 +35,22 @@ behavior.
 - API keys, RBAC roles, audit trail, and environment-scoped secrets.
 - Channel connectors: UI/API first, then Telegram, Slack/Discord, and webhooks.
 
+### v0.7: Product Usability
+- Guided workload creation for Demo Agent, Hermes, OpenClaw, Generic HTTP Agent, External Agent, Model Service, and Pipeline.
+- Agent Console links each message to run state, live events, cancel/retry, and artifacts.
+- Operations Center explains `created`, `deployed`, `reachable`, and `healthy` with actionable remediation.
+- Artifact Library supports workload/session/run/date/content-type navigation.
+
 ## Backlog
 
+- Local onboarding E2E: fresh workspace, `moira up`, demo-agent chat, run events, and artifacts.
+- Hermes/OpenClaw certification: versioned examples, ports, secrets, healthchecks, persistence, and optional live-runtime tests.
+- Multi-agent deploy tests: Compose and Helm with multiple agent-service workloads and no service/port collisions.
+- Observability smoke tests: API, worker, workloads, UI, monitoring assets, and log/metric entrypoints.
+- Security hardening: users, teams, API key rotation, RBAC, and audit trail.
+- Channel connectors: Telegram, Slack/Discord, inbound webhooks, and external-owned channel supervision.
 - Professional architecture diagrams: C4 context, containers, components, and key sequences.
-- UI architecture refactor: keep `moiraweave-ui/src/App.tsx` as routing and shell only, with route screens, shared components, hooks, and typed utilities split into dedicated modules.
-- UI polish: workload editor, run timeline, live events, agent chat, artifacts, deployment health.
+- UI polish: workload wizard, run timeline, live events, agent chat, artifacts, deployment health.
 - E2E scenarios: mock model, mock pipeline, mock long-running agent, cancel, stale recovery.
 - Comparison docs against LangGraph/LangSmith, Dify, Temporal, and Ray Serve.
 - Migration docs for users moving from legacy pipeline/job concepts.
