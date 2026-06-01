@@ -32,6 +32,7 @@ behavior.
 ## Backlog
 
 - Professional architecture diagrams: C4 context, containers, components, and key sequences.
+- UI architecture refactor: keep `moiraweave-ui/src/App.tsx` as routing and shell only, with route screens, shared components, hooks, and typed utilities split into dedicated modules.
 - UI polish: workload editor, run timeline, live events, agent chat, artifacts, deployment health.
 - E2E scenarios: mock model, mock pipeline, mock long-running agent, cancel, stale recovery.
 - Comparison docs against LangGraph/LangSmith, Dify, Temporal, and Ray Serve.
