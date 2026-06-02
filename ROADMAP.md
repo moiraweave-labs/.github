@@ -41,16 +41,25 @@ behavior.
 - Operations Center explains `created`, `deployed`, `reachable`, and `healthy` with actionable remediation.
 - Artifact Library supports workload/session/run/date/content-type navigation.
 
+## Recently Completed
+
+- `moira up` local onboarding path with generated UI, API, worker, storage, workloads, deployment records, and persisted dev CLI auth.
+- Optional local onboarding E2E: fresh workspace, `moira up`, demo-agent chat, run events, and artifacts.
+- Public GHCR image smoke checks for API gateway, worker, and UI.
+- Worker dispatch preflight check that reports Redis consumer-group/consumer state.
+- UI Agent Console run activity summary, history filters, cancel/retry, run links, and artifact links.
+- UI workload template summaries for adapter, ports, secrets, persistence, and channel ownership.
+- Multi-agent deploy tests for Compose and Helm with Hermes and OpenClaw service separation.
+- Combined core pytest harness for API gateway, worker, and integration suites despite service-local `app` package names.
+
 ## Backlog
 
-- Local onboarding E2E: fresh workspace, `moira up`, demo-agent chat, run events, and artifacts.
 - Hermes/OpenClaw certification: versioned examples, ports, secrets, healthchecks, persistence, and optional live-runtime tests.
-- Multi-agent deploy tests: Compose and Helm with multiple agent-service workloads and no service/port collisions.
 - Observability smoke tests: API, worker, workloads, UI, monitoring assets, and log/metric entrypoints.
 - Security hardening: users, teams, API key rotation, RBAC, and audit trail.
 - Channel connectors: Telegram, Slack/Discord, inbound webhooks, and external-owned channel supervision.
 - Professional architecture diagrams: C4 context, containers, components, and key sequences.
-- UI polish: workload wizard, run timeline, live events, agent chat, artifacts, deployment health.
+- UI polish: workload wizard validation, run timeline refinements, live event streaming in chat, artifacts previews, and deployment health actions.
 - E2E scenarios: mock model, mock pipeline, mock long-running agent, cancel, stale recovery.
 - Comparison docs against LangGraph/LangSmith, Dify, Temporal, and Ray Serve.
 - Migration docs for users moving from legacy pipeline/job concepts.
