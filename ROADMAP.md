@@ -33,13 +33,22 @@ behavior.
 - Deployment records for local and Kubernetes environments.
 - Deploy status, logs, undeploy, validation, and health per workload.
 - API keys, RBAC roles, audit trail, and environment-scoped secrets.
-- Channel connectors: UI/API first, then Telegram, Slack/Discord, and webhooks.
+- Optional Kubernetes deployment controller for applying operations without
+  giving the UI direct cluster credentials.
 
 ### v0.7: Product Usability
 - Guided workload creation for Demo Agent, Hermes, OpenClaw, Generic HTTP Agent, External Agent, Model Service, and Pipeline.
 - Agent Console links each message to run state, live events, cancel/retry, and artifacts.
 - Operations Center explains `created`, `deployed`, `reachable`, and `healthy` with actionable remediation.
 - Artifact Library supports workload/session/run/date/content-type navigation.
+- Security console covers users, teams, memberships, API keys, and audit events.
+
+### v0.8: Channels And Team Governance
+- Production users and teams replace demo auth outside local/dev mode.
+- API keys can be global or team-scoped.
+- A signed inbound webhook connector lands before Telegram, Slack, and Discord.
+- Runtime-owned channels remain supervised through `externalOwnedChannels`.
+- Multi-environment views keep local, dev, staging, and production state separate.
 
 ## Recently Completed
 
@@ -51,16 +60,21 @@ behavior.
 - UI workload template summaries for adapter, ports, secrets, persistence, and channel ownership.
 - Multi-agent deploy tests for Compose and Helm with Hermes and OpenClaw service separation.
 - Combined core pytest harness for API gateway, worker, and integration suites despite service-local `app` package names.
+- Versioned Hermes/OpenClaw examples with consistent ports, health checks, persistence, workspaces, and optional live-runtime tests.
+- Observability linkage tests for API, worker, workloads, UI, monitoring manifests, metrics, and network policies.
+- C4 and sequence architecture docs for agent operations, channels, runtime ownership, cancellation, and artifacts.
+- Artifact Library filters, previews, downloads, and cross-links back to runs and agent sessions.
+- Security console for hashed API keys with create, list, rotate, revoke, role display, and audit events.
 
 ## Backlog
 
-- Hermes/OpenClaw certification: versioned examples, ports, secrets, healthchecks, persistence, and optional live-runtime tests.
-- Observability smoke tests: API, worker, workloads, UI, monitoring assets, and log/metric entrypoints.
-- Security hardening: users, teams, API key rotation, RBAC, and audit trail.
-- Channel connectors: Telegram, Slack/Discord, inbound webhooks, and external-owned channel supervision.
-- Professional architecture diagrams: C4 context, containers, components, and key sequences.
-- UI polish: workload wizard validation, run timeline refinements, live event streaming in chat, artifacts previews, and deployment health actions.
-- E2E scenarios: mock model, mock pipeline, mock long-running agent, cancel, stale recovery.
+- Formal migrations: move control-plane DDL from inline startup code to Alembic with a baseline matching the current schema.
+- Durable worker operations: run state guards, executor timeouts, Redis idempotency, pending reclaim, retries, and dead-letter handling.
+- Production auth: stored users, teams, memberships, team-scoped API keys, and local-only demo auth.
+- Kubernetes deployment execution: optional controller that consumes deployment operations and writes command/log/result events.
+- Channel connectors: signed inbound webhook first, then Telegram, Slack/Discord, with runtime-owned channels remaining supervised.
+- UI polish: user/team administration, deployment-controller state, live event streaming in run detail and agent chat, and clearer multi-env filters.
+- E2E scenarios: mock pipeline, mock long-running agent, cancel, stale recovery, dead-letter, and optional kind controller smoke.
 - Comparison docs against LangGraph/LangSmith, Dify, Temporal, and Ray Serve.
 - Migration docs for users moving from legacy pipeline/job concepts.
 
