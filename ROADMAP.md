@@ -65,12 +65,14 @@ behavior.
 - C4 and sequence architecture docs for agent operations, channels, runtime ownership, cancellation, and artifacts.
 - Artifact Library filters, previews, downloads, and cross-links back to runs and agent sessions.
 - Security console for hashed API keys with create, list, rotate, revoke, role display, and audit events.
+- Persistent users, teams, team memberships, team-scoped API keys, membership removal, and CLI/UI security administration.
+- `DEMO_AUTH_ENABLED` keeps demo login local/dev only; staging and production Helm overlays disable it.
 
 ## Backlog
 
 - Formal migrations: move control-plane DDL from inline startup code to Alembic with a baseline matching the current schema.
 - Durable worker operations: run state guards, executor timeouts, Redis idempotency, pending reclaim, retries, and dead-letter handling.
-- Production auth: stored users, teams, memberships, team-scoped API keys, and local-only demo auth.
+- Production auth hardening: password rotation/reset, richer team lifecycle, scoped visibility, and first-admin bootstrap guidance.
 - Kubernetes deployment execution: optional controller that consumes deployment operations and writes command/log/result events.
 - Channel connectors: signed inbound webhook first, then Telegram, Slack/Discord, with runtime-owned channels remaining supervised.
 - UI polish: user/team administration, deployment-controller state, live event streaming in run detail and agent chat, and clearer multi-env filters.
