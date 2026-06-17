@@ -67,11 +67,16 @@ behavior.
 - Security console for hashed API keys with create, list, rotate, revoke, role display, and audit events.
 - Persistent users, teams, team memberships, team-scoped API keys, membership removal, and CLI/UI security administration.
 - `DEMO_AUTH_ENABLED` keeps demo login local/dev only; staging and production Helm overlays disable it.
+- Durable worker settings for heartbeat, stale detection, Redis pending reclaim,
+  bounded retries, backoff, and dead-letter handling are wired through tests,
+  Compose, and Helm.
+- Operators can inspect and purge worker dead-letter dispatch entries through
+  `/v1/runs/dead-letter` and `moira run dead-letter list|purge`.
 
 ## Backlog
 
 - Formal migrations: move control-plane DDL from inline startup code to Alembic with a baseline matching the current schema.
-- Durable worker operations: run state guards, executor timeouts, Redis idempotency, pending reclaim, retries, and dead-letter handling.
+- Durable worker hardening: richer retry classification and operator-facing metrics for reclaim/retry/lost/dead-letter transitions.
 - Production auth hardening: password rotation/reset, richer team lifecycle, scoped visibility, and first-admin bootstrap guidance.
 - Kubernetes deployment execution: optional controller that consumes deployment operations and writes command/log/result events.
 - Channel connectors: signed inbound webhook first, then Telegram, Slack/Discord, with runtime-owned channels remaining supervised.
