@@ -72,11 +72,15 @@ behavior.
   Compose, and Helm.
 - Operators can inspect and purge worker dead-letter dispatch entries through
   `/v1/runs/dead-letter` and `moira run dead-letter list|purge`.
+- Worker exposes Prometheus counters for dead-letter, pending reclaim outcomes,
+  scheduled retries, and stale-heartbeat lost runs.
 
 ## Backlog
 
 - Formal migrations: move control-plane DDL from inline startup code to Alembic with a baseline matching the current schema.
-- Durable worker hardening: richer retry classification and operator-facing metrics for reclaim/retry/lost/dead-letter transitions.
+- Durable worker hardening: richer retry classification, safe dead-letter
+  replay, and dashboard/alert coverage for reclaim/retry/lost/dead-letter
+  transitions.
 - Production auth hardening: password rotation/reset, richer team lifecycle, scoped visibility, and first-admin bootstrap guidance.
 - Kubernetes deployment execution: optional controller that consumes deployment operations and writes command/log/result events.
 - Channel connectors: signed inbound webhook first, then Telegram, Slack/Discord, with runtime-owned channels remaining supervised.
