@@ -42,6 +42,8 @@ behavior.
 - Operations Center explains `created`, `deployed`, `reachable`, and `healthy` with actionable remediation.
 - Artifact Library supports workload/session/run/date/content-type navigation.
 - Security console covers users, teams, memberships, API keys, and audit events.
+- Security console supports user/team edits and Playwright covers the main
+  identity administration path.
 
 ### v0.8: Channels And Team Governance
 - Production users and teams replace demo auth outside local/dev mode.
@@ -55,6 +57,9 @@ behavior.
 - `moira up` local onboarding path with generated UI, API, worker, storage, workloads, deployment records, and persisted dev CLI auth.
 - Optional local onboarding E2E: fresh workspace, `moira up`, demo-agent chat, run events, and artifacts.
 - Public GHCR image smoke checks for API gateway, worker, and UI.
+- Release Please calls the reusable/manual Python package publish workflow;
+  PyPI publishing is opt-in through `PYPI_PUBLISH_ENABLED=true`, and the
+  fallback build-and-skip path has been validated on a real release.
 - Worker dispatch preflight check that reports Redis consumer-group/consumer state.
 - UI Agent Console run activity summary, history filters, cancel/retry, run links, and artifact links.
 - UI workload template summaries for adapter, ports, secrets, persistence, and channel ownership.
@@ -70,22 +75,84 @@ behavior.
 - Durable worker settings for heartbeat, stale detection, Redis pending reclaim,
   bounded retries, backoff, and dead-letter handling are wired through tests,
   Compose, and Helm.
-- Operators can inspect and purge worker dead-letter dispatch entries through
-  `/v1/runs/dead-letter` and `moira run dead-letter list|purge`.
+- Operators can inspect, replay, and purge worker dead-letter dispatch entries
+  through `/v1/runs/dead-letter` and
+  `moira run dead-letter list|replay|purge`.
 - Worker exposes Prometheus counters for dead-letter, pending reclaim outcomes,
   scheduled retries, and stale-heartbeat lost runs.
+- Safe dead-letter replay is available through
+  `/v1/runs/dead-letter/{message_id}/replay` and
+  `moira run dead-letter replay`.
+- Signed inbound webhooks provide the first v1 external channel connector while
+  Telegram, Slack, and Discord remain post-webhook work.
+- Deployment operations use explicit state-machine validation, controller claim,
+  heartbeat, lease expiry, reclaim events, stdout/stderr summaries, and a CLI
+  controller heartbeat loop while Kubernetes commands run.
+- Persistent auth now includes first-admin bootstrap, password change/reset,
+  user update/disable/enable, team update/member lifecycle, team-scoped API
+  keys, and team-aware visibility for runs, sessions, deployments, operations,
+  artifacts, and audit events.
+- Login attempts, secret inventory reads, user/team/API-key changes,
+  dead-letter replay/purge, artifact access, and deployment controller actions
+  are audited.
+- Alembic is the runtime-facing Postgres schema owner, with legacy baseline SQL
+  isolated for migration compatibility checks.
+- Real Postgres migration tests cover empty database, existing baseline,
+  idempotent upgrades, and critical tables/indexes.
+- Worker retry classification separates transient adapter/runtime failures from
+  non-retryable manifest, auth, payload, and missing-workload failures.
+- Operations Center alerts cover retry/reclaim pressure, stale/lost runs,
+  dead-letter backlog, expired controller leases, and duplicate dispatch
+  acknowledgements.
+- Optional kind controller smoke tests cover apply, logs, undeploy, expired
+  lease reclaim, and abandoned operation recovery.
+- Sensitive endpoint rate-limit tests cover login, API key creation, webhook
+  ingress, dead-letter replay, and deployment controller claim paths.
+- Cross-team visibility regression covers runs, sessions, artifacts,
+  deployments, deployment operations, and audit events.
+- UI Playwright coverage asserts operation execution labels for guidance-only,
+  control-plane, and controller-executed deployment operations.
+- Operations Center lists, replays, and purges dead-letter dispatch messages
+  through the API gateway; Playwright covers replay.
+- Runs, Artifact Library, and audit events support deployment-environment
+  filters, and Operations shared URLs preserve the selected environment.
+- Workloads are shared by default or can persistently scope to a team through
+  `moiraweave.io/team-id`; the API and Create Workload wizard enforce and expose
+  that boundary.
+- Staging/prod Helm overlays now have an auth contract: demo login is disabled,
+  while bootstrap, persistent-user login, and persistent API keys keep working.
+- Run Detail opens the recent event tail and resumes SSE with `Last-Event-ID`;
+  cursor reads avoid polling an entire long-running timeline.
+- Agent Console pages sessions and history, including deep links to sessions
+  beyond the first page and a Playwright "load earlier" regression flow.
+- Artifact Library now retrieves bounded pages while retaining its existing
+  workload/session/run/date/type filters and artifact-to-run links.
+- Runs, deployment operations, and audit events now retrieve bounded pages from
+  the dashboard with explicit older-page loading.
+- Workloads, Runs, Artifact Library, and Agent Console now distinguish API
+  errors from true empty states, with Playwright regressions for failed list
+  paths.
+- Run Detail now distinguishes run-status, event-timeline, and artifact load
+  failures from true empty timeline/artifact states.
+- Security now distinguishes user, team, team-member, and API-key load failures
+  from true empty identity inventories.
+- Operations Center now distinguishes environment, alert, deployment,
+  operation, and audit load failures from true empty platform state.
+- Local onboarding E2E now validates `moira up`, demo-agent chat, run listing,
+  stored events, and produced artifacts.
 
 ## Backlog
 
-- Formal migrations: move control-plane DDL from inline startup code to Alembic with a baseline matching the current schema.
-- Durable worker hardening: richer retry classification, safe dead-letter
-  replay, and dashboard/alert coverage for reclaim/retry/lost/dead-letter
-  transitions.
-- Production auth hardening: password rotation/reset, richer team lifecycle, scoped visibility, and first-admin bootstrap guidance.
-- Kubernetes deployment execution: optional controller that consumes deployment operations and writes command/log/result events.
-- Channel connectors: signed inbound webhook first, then Telegram, Slack/Discord, with runtime-owned channels remaining supervised.
-- UI polish: user/team administration, deployment-controller state, live event streaming in run detail and agent chat, and clearer multi-env filters.
-- E2E scenarios: mock pipeline, mock long-running agent, cancel, stale recovery, dead-letter, and optional kind controller smoke.
+- Production auth hardening: continued scope and rate-limit coverage for new
+  sensitive endpoints.
+- Durable control-plane polish: load-oriented API tests and dead-letter
+  traceability regression checks as schemas evolve.
+- Kubernetes deployment execution: wire optional kind/controller smoke into CI
+  only when cluster credentials and execution budget are available.
+- Release-gate product E2E maintenance as onboarding, chat, artifacts,
+  Operations Center, Security, and failure recovery evolve.
+- E2E scenarios: mock pipeline, mock long-running agent, cancel, stale
+  recovery, dead-letter replay, and release-gate product flows.
 - Comparison docs against LangGraph/LangSmith, Dify, Temporal, and Ray Serve.
 - Migration docs for users moving from legacy pipeline/job concepts.
 
